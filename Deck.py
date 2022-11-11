@@ -1,3 +1,4 @@
+import random 
 class Deck:
 
     # create deck (made up of 6 decks)
@@ -7,6 +8,7 @@ class Deck:
         self.cards += [int(i/24)+1 for i in range(24*8)]
         # 96 10s (24 10s, Js, Qs, Ks)
         self.cards += [10 for i in range(96)]
+        random.shuffle(self.cards)
         
 
 

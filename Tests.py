@@ -1,10 +1,16 @@
-import Deck
+from Deck import Deck
 
 # TEST FOR DECK:
 def test_deck():
-    d = Deck()
+    try:
+        d = Deck()
+    except: 
+        print("Problem instantiating Deck object.")
     cards = d.cards 
     problem = False
+    if len(cards) != 52 * 6:
+        print("PROBLEM WITH LENGTH OF DECK")
+        problem = True
     for i in range(1, 9):
         count = 0
         for card in cards:
@@ -30,3 +36,4 @@ def test_deck():
     if not problem:
         print("ALL GOOD")
         
+test_deck()
