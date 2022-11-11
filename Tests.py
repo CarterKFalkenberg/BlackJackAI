@@ -11,7 +11,7 @@ def test_deck():
     if len(cards) != 52 * 6:
         print("PROBLEM WITH LENGTH OF DECK")
         problem = True
-    for i in range(1, 9):
+    for i in range(2, 10):
         count = 0
         for card in cards:
             if card == i:
@@ -33,7 +33,17 @@ def test_deck():
     if count != 96:
         print("PROBLEM WITH 10")
         problem = True
+    for i in range(52*6):
+        try:
+            card = d.dealCard()
+        except:
+            print("Problem dealing card")
+            problem = True
+        if card not in ["A", 2, 3, 4, 5, 6, 7, 8, 9, 10]:
+            print("Invalid card in deck: " + str(card))
+            problem = True
     if not problem:
         print("ALL GOOD")
         
+# run tests
 test_deck()
