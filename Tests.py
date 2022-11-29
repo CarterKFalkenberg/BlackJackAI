@@ -1,4 +1,5 @@
 from Deck import Deck
+from Hand import Hand
 
 # TEST FOR DECK:
 def test_deck():
@@ -52,6 +53,47 @@ def test_deck():
             problem = True
     if not problem:
         print("PASSED: DECK TEST")
-        
+
+# TEST HAND:    
+def test_hand():
+    problem = False
+    d = Deck()
+    hand = Hand(d, canSplit = True)
+    # start by checking a bunch of aces
+    hand.cards = ["A", "A", "A", "A"]
+    hand.updateValue()
+    if hand.value != 14:
+        print("Problem with getting value of AAAA. Expected 14, got " + str(hand.value))
+        problem = True
+    if not problem:
+        print("PASSED: HAND TEST")
+    
+    # check all cases of 2 non-ace numbers and then adding an ace
+    for i in range(1, 11):
+        for j in range(1, 11):
+            hand.cards = [i, j]
+            hand.updateValue()
+            if hand.value != i + j:
+                print("Problem with getting value of " + str(i) + str(j) + ". Expected " + str(i+j) + ", got " + str(hand.value))
+                problem = True
+            else:
+                hand.cards.append("A")
+                originalValue = hand.value
+                hand.updateValue()
+                if originalValue > 10:
+                    if hand.value != originalValue + 1:
+                        print("Problem with getting value of " + str(i) + str(j) + "A. Expected " + str(originalValue + 1) + ", got " + str(hand.value))
+                        problem = True
+                else:
+                    hand.updateValue()
+                    if hand.value != originalValue + 11:
+                        print("Problem with getting value of " + str(i) + str(j) + "A. Expected " + str(originalValue + 11) + ", got " + str(hand.value))
+                        problem = True
+    
+    # check all cases of starting with one ace and then adding an ace
+    for i in range(1, 11):
+        hand = ["A", i]    
+
 # run tests
 test_deck()
+test_hand()
