@@ -9,10 +9,23 @@ class Hand:
         self.updateValue()
     
     # sets value to the value of the hand
-    # to be implemented
+    # TODO: WRITE TESTS
     def updateValue(self):
-        #self.value = ...
-        pass
+        # get total value as if aces were 11, keep track of ace count
+        acesWorthEleven = 0 # 
+        total = 0
+        for card in self.cards:
+            if card == "A":
+                acesWorthEleven += 1
+                total += 11
+            else:
+                total += card 
+        # if over 21, set ace values to 1, not 11
+        while(total > 21 and acesWorthEleven > 0):
+            acesWorthEleven -= 1 
+            total -= 10 # minus value of ace (11) and add new value (1)
+        self.value = total
+
 
     # eventually will be computer based, but for now used based
     # will return string of: hit, stand, double down, or split
