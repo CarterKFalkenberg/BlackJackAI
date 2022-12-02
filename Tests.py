@@ -92,7 +92,21 @@ def test_hand():
     
     # check all cases of starting with one ace and then adding an ace
     for i in range(1, 11):
-        hand = ["A", i]    
+        hand.cards = ["A", i]  
+        hand.updateValue()
+        if hand.value != 11 + i:
+            print("Problem with getting value of A " + str(i) + ". Expected " + str(11+i) + ", got " + str(hand.value))  
+            problem = True
+        else:
+            hand.cards.append("A")
+            originalValue = hand.value
+            hand.updateValue()
+            if originalValue == 21:
+                if hand.value != 12:
+                    print("Problem with getting value of A " + str(i) + " A. Expected 12, got " + str(hand.value))
+            elif hand.value != originalValue + 1:
+                print("Problem with getting value of A " + str(i) + " A. Expected " + str(originalValue + 1) + ", got " + str(hand.value))
+                problem = True
 
 # run tests
 test_deck()
