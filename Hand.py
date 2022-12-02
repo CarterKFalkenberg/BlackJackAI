@@ -9,7 +9,6 @@ class Hand:
         self.updateValue()
     
     # sets value to the value of the hand
-    # TODO: WRITE TESTS
     def updateValue(self):
         # get total value as if aces were 11, keep track of ace count
         acesWorthEleven = 0 # 
