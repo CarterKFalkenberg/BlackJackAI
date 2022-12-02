@@ -7,27 +7,29 @@ class Player:
         for i, hand in enumerate(self.hands):
             if not hand:
                 break
-            if hand.value == 21: #HAND.VALUE NEEDS TO BE IMPLEMENTED
+            if hand.value == 21: 
                 # BLACKJACK
                 pass
-            while(hand.value < 21): #HAND.VALUE NEEDS TO BE IMPLEMENTED
+            while(hand.value < 21): 
                 currentSplits = 0
                 move = hand.makeMove()
                 if move == "stand":
                     break
                 elif move == "hit":
-                    # hit. NEED TO IMPLEMENT
+                    # TODO
                     pass
                 elif move == "double down":
-                    # double down. NEED TO IMPLEMENT
+                    # TODO
                     pass
                 elif move == "split":
                     currentSplits += 1
                     # this only occurs when canSplit is true
-                    self.hands[i + currentSplits] = Hand(self.deck, canSplit = i + currentSplits <= 3)
-                    if i + currentSplits > 3:
+                    # new hand can't split if it takes up index 3 of self.hands
+                    self.hands[i + currentSplits] = Hand(self.deck, canSplit = i + currentSplits < 3)
+                    # no hands can split if self.hands is full
+                    if i + currentSplits >= 3:
                         for j in range(i, 4):
                             self.hands[j].canSplit = False
-            if hand.value > 21: #HAND.VALUE NEEDS TO BE IMPLEMENTED
-                # update money # NEEDS TO BE IMPLEMENTED
+            if hand.value > 21: 
+                #TODO: Update money
                 pass
