@@ -42,3 +42,9 @@ class Hand:
     def split(self):
         self.cards[0] = self.deck.dealCard()
         self.updateValue()
+
+    #TODO: write function
+    # returns true if dealer has value 17 and an ace with value 11
+    def isSoft17(self):
+        # similar logic to update value to track aces
+        pass

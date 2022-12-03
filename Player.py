@@ -3,6 +3,7 @@ from Hand import Hand
 class Player:
     def __init__(self, deck: Deck):
         self.hands = [Hand(deck, canSplit=True), None, None, None]
+        self.deck = deck
     def play(self):
         for i, hand in enumerate(self.hands):
             if not hand:
