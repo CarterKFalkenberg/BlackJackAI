@@ -43,8 +43,31 @@ class Hand:
         self.cards[0] = self.deck.dealCard()
         self.updateValue()
 
-    #TODO: write function
+    # TODO: Write tests for isSoft17
     # returns true if dealer has value 17 and an ace with value 11
     def isSoft17(self):
-        # similar logic to update value to track aces
-        pass
+        # make sure value is 17
+        if self.value != 17:
+            raise Exception("Called Hand.isSoft17, but dealer hand not equal to 17") 
+        # count how many aces as well as keep track of total
+        acesWorthEleven = 0 
+        total = 0
+        for card in self.cards:
+            if card == "A":
+                acesWorthEleven += 1
+                total += 11
+            else:
+                total += card
+        # adjust the amount of aces that are worth eleven
+        while (acesWorthEleven > 0 and total > 21):
+            acesWorthEleven -= 1
+            total -= 10
+        
+        # if there are any acesWorthEleven, then it is a soft 17
+        if acesWorthEleven > 0:
+            return True
+        else: 
+            return False
+        
+        
+        
