@@ -1,5 +1,6 @@
 from Deck import Deck
 from Hand import Hand
+from Dealer import Dealer
 
 # TEST FOR DECK:
 def test_deck():
@@ -131,8 +132,27 @@ def test_hand():
         if hand.isSoft17():
             print("Problem with isSoft17. Expected false, got true")
 
+# TEST DEALER
+def test_dealer():
+    problem = False
+    for i in range(1000):
+        dealer = Dealer(Deck())
+        dealer.play()
+        if dealer.hand.value < 17:
+            print("Problem with dealer play method. Expected value >= 17, got value < 17")
+            problem = True
+        if dealer.hand.value == 17:
+            if not dealer.hand.isSoft17():
+                print("Problem with soft 17")
+                problem = True
+        if dealer.hand.value > 27:
+            print("Problem with dealer hitting above 16")
+            problem = True
+    if not problem:
+        print("PASSED: DEALER TEST")
         
 
 # run tests
 test_deck()
 test_hand()
+test_dealer()
