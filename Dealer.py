@@ -10,9 +10,10 @@ class Dealer:
         while(self.hand.value <= 17):
             # if hand value == not soft 17
             if self.hand.value == 17:
-                pass
                 # check if soft 17
-                if not self.hand.isSoft17: 
+                if self.hand.isSoft17: 
+                    self.hand.hit()
+                else:
                     break
             # else hit
             else:
