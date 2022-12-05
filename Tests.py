@@ -108,6 +108,31 @@ def test_hand():
                 print("Problem with getting value of A " + str(i) + " A. Expected " + str(originalValue + 1) + ", got " + str(hand.value))
                 problem = True
 
+    # test cases of isSoft17
+    for i in range(1,7):
+        hand.cards = ["A", i]
+        hand.updateValue()
+        if i != 6:
+            hand.cards.append(6-i)
+            hand.updateValue()
+        if not hand.isSoft17():
+            print("Problem with isSoft17. Should be true, was false")
+    for i in range(1, 6):
+        hand.cards = ["A", i]
+        hand.updateValue()
+        if i != 5:
+            hand.cards.append(5-i)
+        hand.cards.append("A")
+        hand.updateValue()
+        if not hand.isSoft17():
+            print("Problem with isSoft17. Should be true, was false")
+        hand.cards.append(10)
+        hand.updateValue()
+        if hand.isSoft17():
+            print("Problem with isSoft17. Expected false, got true")
+
+        
+
 # run tests
 test_deck()
 test_hand()
