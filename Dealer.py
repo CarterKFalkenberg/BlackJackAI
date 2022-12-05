@@ -12,9 +12,8 @@ class Dealer:
             if self.hand.value == 17:
                 pass
                 # check if soft 17
-                # TODO: if not self.hand.isSoft17: 
-                    # TODO: Write Hand.isSoft17
-                    # break
+                if not self.hand.isSoft17: 
+                    break
             # else hit
             else:
                 self.hand.hit()
