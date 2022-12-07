@@ -4,9 +4,11 @@ class Hand:
     def __init__(self, deck: Deck, canSplit: bool):
         self.deck = deck
         self.cards = [deck.dealCard(), deck.dealCard()]
+        self.canHit = True
         self.canSplit = canSplit
         self.value = 0
         self.updateValue()
+        self.bet = 10 # we aren't asking user bc it will be constant for AI
     
     # sets value to the value of the hand
     def updateValue(self):
@@ -38,12 +40,17 @@ class Hand:
         self.cards.append(self.deck.dealCard())
         self.updateValue()
 
+    # hit and double bet. set canHit to False
+    def doubleDown(self):
+        self.hit()
+        self.bet += self.bet
+        self.canHit = False
+
     # simply gets rid of one card and adds a new one (logic of new hand is dealt with in player class)
     def split(self):
         self.cards[0] = self.deck.dealCard()
         self.updateValue()
 
-    # TODO: Write tests for isSoft17
     # returns true if dealer has value 17 and an ace with value 11
     def isSoft17(self):
         # make sure value is 17
@@ -68,6 +75,11 @@ class Hand:
             return True
         else: 
             return False
-        
+    
+    # determines if a hand is blackjack
+    def hasBlackJack(self):
+        if self.value == 21 and len(self.cards) == 2:
+            return True
+        return False
         
         
