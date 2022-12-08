@@ -30,9 +30,17 @@ class Hand:
 
     # eventually will be computer based, but for now used based
     # will return string of: hit, stand, double down, or split
-    # to be implemented
+    # TODO
     def makeMove(self):
-        pass
+        # if 2 cards, they can hit, stand, double down
+        if len(self.cards) == 2:
+
+        # otherwise, they can stand, and maybe hit
+        if self.canHit:
+        else:
+            print("makeMove SHOULD NOT BE CALLED WHEN STAND IS THE ONLY VALID MOVE")
+            return "stand"
+
 
     # add a card to the hand
     # this will be used for Double Down as well (logic is dealt with in makeMove)

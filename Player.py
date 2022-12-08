@@ -21,6 +21,7 @@ class Player:
                     hand.hit()
                 elif move == "double down":
                     hand.doubleDown()
+                    conitnuu
                 elif move == "split":
                     currentSplits += 1
                     # this only occurs when canSplit is true
