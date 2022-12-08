@@ -5,7 +5,7 @@ class Hand:
         self.deck = deck
         self.cards = [deck.dealCard(), deck.dealCard()]
         self.canHit = True
-        self.canSplit = canSplit
+        self.canSplit = canSplit and self.cards[0] == self.cards[1] 
         self.value = 0
         self.updateValue()
         self.bet = 10 # we aren't asking user bc it will be constant for AI
@@ -30,16 +30,32 @@ class Hand:
 
     # eventually will be computer based, but for now used based
     # will return string of: hit, stand, double down, or split
-    # TODO
     def makeMove(self):
-        # if 2 cards, they can hit, stand, double down
-        if len(self.cards) == 2:
 
-        # otherwise, they can stand, and maybe hit
-        if self.canHit:
-        else:
-            print("makeMove SHOULD NOT BE CALLED WHEN STAND IS THE ONLY VALID MOVE")
+        # if they can not make a move (if they cant hit, they can't split either.)
+        if not self.canHit:
             return "stand"
+
+        # if they can split, they can do anything (only 2 cards)
+        if self.canSplit:
+            answer = input("Would you like to stand(1), hit(2), double down(3), or split(4)")
+            while answer not in ["1", "2", "3", "4"]:
+                answer = input("Invalid answer. Would you like to stand(1), hit(2), double down(3), or split(4)")
+
+        # if 2 cards and can't split, they can hit, stand, double down
+        elif len(self.cards) == 2:
+            answer = input("Would you like to stand(1), hit(2), or double down(3)")
+            while answer not in ["1", "2", "3"]:
+                answer = input("Invalid answer. Would you like to stand(1), hit(2), or double down(3)")
+
+        # otherwise, they can stand or hit
+        else:
+            answer = input("Would you like to stand(1) or hit(2)")
+            while answer not in ["1", "2"]:
+                answer = input("Invalid answer. Would you like to stand(1) or hit(2)")
+    
+        numToAnswer = {"1": "stand", "2": "hit", "3": "double down", "4": "split"}
+        return numToAnswer[answer]
 
 
     # add a card to the hand

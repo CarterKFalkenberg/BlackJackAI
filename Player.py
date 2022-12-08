@@ -9,9 +9,8 @@ class Player:
         for i, hand in enumerate(self.hands):
             if not hand:
                 break
-            if hand.value == 21: 
-                # BLACKJACK. PAID 3:2 UNLESS DEALER HAS BLACKJACK, THEN PUSH
-                pass
+  
+            # if blackjack, will be dealt with in Game flow
             while(hand.value < 21): 
                 currentSplits = 0
                 move = hand.makeMove()
@@ -21,7 +20,7 @@ class Player:
                     hand.hit()
                 elif move == "double down":
                     hand.doubleDown()
-                    conitnuu
+                    break
                 elif move == "split":
                     currentSplits += 1
                     # this only occurs when canSplit is true
@@ -31,6 +30,8 @@ class Player:
                     if i + currentSplits >= 3:
                         for j in range(i, 4):
                             self.hands[j].canSplit = False
+                            
+            # deal with busting immediately 
             if hand.value > 21: 
                 self.balance -= hand.bet
 
