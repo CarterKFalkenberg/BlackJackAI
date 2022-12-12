@@ -9,7 +9,6 @@ class Player:
         for i, hand in enumerate(self.hands):
             if not hand:
                 break
-  
             # if blackjack, will be dealt with in Game flow
             while(hand.value < 21): 
                 currentSplits = 0
