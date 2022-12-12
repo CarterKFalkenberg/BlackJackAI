@@ -35,7 +35,7 @@ class Hand:
         # if they can not make a move (if they cant hit, they can't split either.)
         if not self.canHit:
             return "stand"
-
+        print(self.toString())
         # if they can split, they can do anything (only 2 cards)
         if self.canSplit:
             answer = input("Would you like to stand(1), hit(2), double down(3), or split(4)")
@@ -105,5 +105,13 @@ class Hand:
         if self.value == 21 and len(self.cards) == 2:
             return True
         return False
+
+    # show user their hand
+    def toString(self):
+        returnStr = "Cards: "
+        for card in self.cards:
+            returnStr += str(card) + " "
+        returnStr += "Value: " + str(self.value)
+        return returnStr
         
         
