@@ -3,7 +3,7 @@ class Hand:
     # init 
     def __init__(self, deck: Deck, canSplit: bool, splitCard = None):
         self.deck = deck
-        if not splitCard: 
+        if splitCard is None: 
             self.cards = [deck.dealCard(), deck.dealCard()]
         else:
             self.cards = [splitCard, deck.dealCard()]
@@ -74,9 +74,11 @@ class Hand:
         self.canHit = False
 
     # simply gets rid of one card and adds a new one (logic of new hand is dealt with in player class)
+    # update canSplit
     def split(self):
         self.cards[0] = self.deck.dealCard()
         self.updateValue()
+        self.canSplit = self.cards[0] == self.cards[1] 
 
     # returns true if dealer has value 17 and an ace with value 11
     def isSoft17(self):
