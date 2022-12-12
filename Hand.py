@@ -1,9 +1,12 @@
 from Deck import Deck
 class Hand:
     # init 
-    def __init__(self, deck: Deck, canSplit: bool):
+    def __init__(self, deck: Deck, canSplit: bool, splitCard = None):
         self.deck = deck
-        self.cards = [deck.dealCard(), deck.dealCard()]
+        if not splitCard: 
+            self.cards = [deck.dealCard(), deck.dealCard()]
+        else:
+            self.cards = [splitCard, deck.dealCard()]
         self.canHit = True
         self.canSplit = canSplit and self.cards[0] == self.cards[1] 
         self.value = 0
