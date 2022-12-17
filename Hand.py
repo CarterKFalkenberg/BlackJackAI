@@ -1,11 +1,14 @@
 from Deck import Deck
 class Hand:
     # init 
-    def __init__(self, deck: Deck, canSplit: bool):
+    def __init__(self, deck: Deck, canPossiblySplit: bool, splitCard = None):
         self.deck = deck
-        self.cards = [deck.dealCard(), deck.dealCard()]
+        if splitCard is None: 
+            self.cards = [deck.dealCard(), deck.dealCard()]
+        else:
+            self.cards = [splitCard, deck.dealCard()]
         self.canHit = True
-        self.canSplit = canSplit and self.cards[0] == self.cards[1] 
+        self.canSplit = canPossiblySplit and self.cards[0] == self.cards[1] 
         self.value = 0
         self.updateValue()
         self.bet = 10 # we aren't asking user bc it will be constant for AI
@@ -71,9 +74,11 @@ class Hand:
         self.canHit = False
 
     # simply gets rid of one card and adds a new one (logic of new hand is dealt with in player class)
+    # update canSplit
     def split(self):
         self.cards[0] = self.deck.dealCard()
         self.updateValue()
+        self.canSplit = self.cards[0] == self.cards[1] 
 
     # returns true if dealer has value 17 and an ace with value 11
     def isSoft17(self):

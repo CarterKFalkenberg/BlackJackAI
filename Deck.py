@@ -11,11 +11,14 @@ class Deck:
         # 96 10s (24 10s, Js, Qs, Ks)
         self.cards += [10 for i in range(96)]
         random.shuffle(self.cards)
+        # TODO: REMOVE THE FOLLOWING CODE BEFORE MERGE!!!
+        self.cards[0:16] = [10, 10, 1, 1, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10] # after split should get 
     
     # deal the next card and update self.current_card_index
     def dealCard(self):
         self.current_card_index += 1
         return self.cards[self.current_card_index]
+
 
 
     

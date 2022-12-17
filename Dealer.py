@@ -3,7 +3,7 @@ from Hand import Hand
 
 class Dealer:
     def __init__(self, deck: Deck):
-        self.hand = Hand(deck, canSplit = False)
+        self.hand = Hand(deck, canPossiblySplit = False)
         self.deck = deck
     def play(self):
         # if hand value > 17, stand
