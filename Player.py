@@ -4,7 +4,6 @@ class Player:
     def __init__(self, deck: Deck, balance: int):
         self.hands = [Hand(deck, canPossiblySplit = True), None, None, None]
         self.deck = deck
-        self.balance = balance
         
     def play(self):
         # keep track of splits
@@ -45,8 +44,8 @@ class Player:
                         for j in range(i, 4):
                             self.hands[j].canSplit = False
                             
-            # deal with busting immediately 
-            if hand.value > 21: 
-                print("You busted, you lose the bet.")
-                self.balance -= hand.bet
+            # blackjack
+            if hand.hasBlackJack():
+                print("You got blackjack! Nice job!")
 
+        

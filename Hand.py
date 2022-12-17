@@ -45,7 +45,7 @@ class Hand:
             while answer not in ["1", "2", "3", "4"]:
                 answer = input("Invalid answer. Would you like to stand(1), hit(2), double down(3), or split(4)")
 
-        # if 2 cards and can't split, they can hit, stand, double down
+        # if 2 cards and can't split, they can hit, stand, double down. Assume they can go into negative balance
         elif len(self.cards) == 2:
             answer = input("Would you like to stand(1), hit(2), or double down(3)")
             while answer not in ["1", "2", "3"]:

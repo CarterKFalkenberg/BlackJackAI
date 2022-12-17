@@ -18,4 +18,10 @@ class Dealer:
             # else hit
             else:
                 self.hand.hit()
+
+    # determines if dealer has blackjack
+    def hasBlackJack(self):
+        if self.hand.value == 21 and len(self.hand.cards) == 2:
+            return True
+        return False
             
