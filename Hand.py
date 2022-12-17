@@ -1,14 +1,14 @@
 from Deck import Deck
 class Hand:
     # init 
-    def __init__(self, deck: Deck, canSplit: bool, splitCard = None):
+    def __init__(self, deck: Deck, canPossiblySplit: bool, splitCard = None):
         self.deck = deck
         if splitCard is None: 
             self.cards = [deck.dealCard(), deck.dealCard()]
         else:
             self.cards = [splitCard, deck.dealCard()]
         self.canHit = True
-        self.canSplit = canSplit and self.cards[0] == self.cards[1] 
+        self.canSplit = canPossiblySplit and self.cards[0] == self.cards[1] 
         self.value = 0
         self.updateValue()
         self.bet = 10 # we aren't asking user bc it will be constant for AI

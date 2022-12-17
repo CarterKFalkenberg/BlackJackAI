@@ -2,7 +2,7 @@ from Deck import Deck
 from Hand import Hand
 class Player:
     def __init__(self, deck: Deck, balance: int):
-        self.hands = [Hand(deck, canSplit=True), None, None, None]
+        self.hands = [Hand(deck, canPossiblySplit = True), None, None, None]
         self.deck = deck
         self.balance = balance
     # logic here is messed up. We are able to split unlimited amount of times if the 
@@ -35,7 +35,7 @@ class Player:
 
                     # new hand is in the pos of the first 'None' in self.hands, whos index is just numSplits
                     # can not throw an error as canSplit was True
-                    self.hands[numSplits] = Hand(self.deck, canSplit = numSplits < 3, splitCard = splitCard)
+                    self.hands[numSplits] = Hand(self.deck, canPossiblySplit = numSplits < 3, splitCard = splitCard)
                     
                     # no hands can split if self.hands is full
                     if numSplits >= 3:
