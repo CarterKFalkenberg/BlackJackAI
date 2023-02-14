@@ -1,0 +1,23 @@
+https://towardsdatascience.com/winning-blackjack-using-machine-learning-681d924f197c 
+
+
+FIRST:
+- Change code such that you can only split once. 
+- Change code such that you can NOT double down after splitting. 
+
+* start with population of random solutions and let evolution determine optimal strategy 
+
+	* use a fitness score to determine how well it did (this is simply total balance after x amount of games, the higher, the better)
+	
+
+* Use different selection techniques
+	* tournament selection: Pick N random candidates from the population and use the one with the best fitness score
+	* use parents to create a child. If one parent has a better fitness score, have the probability of using their information higher (if parent1 != parent2 for a given "gene")
+	* to promote diversity, use genetic mutations with a low probability 
+
+
+
+
+To find the right number of hands needed, do multiple runs with the same strategy. We want a very low variability. For different amounts of hands needed, compare coefficient of variation = stdev/mean. Plot hands played per test vs coefficient of variation to see where you can stop
+
+
